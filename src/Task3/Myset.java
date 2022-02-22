@@ -2,8 +2,8 @@ package Task3;
 
 import java.util.*;
 
-public class Myset implements Set {
-    HashSet hashset;
+public class Myset<E> implements Set<E> {
+    HashSet hashset=new HashSet();
     @Override
     public synchronized int size() {
         return hashset.size();

@@ -6,8 +6,8 @@ import java.util.concurrent.Semaphore;
 
 public class MyList<E> implements List<E> {
 
-    private static final Semaphore semaphore = new Semaphore(1,true);
-    private final List<E> list = new ArrayList();
+    private final Semaphore semaphore = new Semaphore(1,true);
+    private final List<E> list = new ArrayList<>();
     @Override
     public int size() {
         int size=0;
@@ -50,12 +50,13 @@ public class MyList<E> implements List<E> {
         finally {
             semaphore.release();
         }
-        return contains(o);
+        return contains;
     }
 
     @Override
     public Iterator iterator() {
-        Iterator iterator=null;
+        Iterator iterator= null;
+
         try {
             semaphore.acquire();
             iterator=list.iterator();
@@ -65,7 +66,8 @@ public class MyList<E> implements List<E> {
         finally {
             semaphore.release();
         }
-        return iterator();
+        assert iterator!=null;
+        return iterator;
     }
 
     @Override
@@ -95,7 +97,7 @@ public class MyList<E> implements List<E> {
         finally {
             semaphore.release();
         }
-        return add(o);
+        return add;
     }
 
     @Override
@@ -110,7 +112,7 @@ public class MyList<E> implements List<E> {
         finally {
             semaphore.release();
         }
-        return remove(o);
+        return remove;
     }
 
     @Override
@@ -125,7 +127,7 @@ public class MyList<E> implements List<E> {
         finally {
             semaphore.release();
         }
-        return addAll(c);
+        return addAll;
     }
 
     @Override
@@ -140,12 +142,12 @@ public class MyList<E> implements List<E> {
         finally {
             semaphore.release();
         }
-        return addAll(index,c);
+        return addAll;
     }
 
     @Override
     public void clear() {
-
+        list.clear();
     }
 
     @Override
@@ -160,12 +162,12 @@ public class MyList<E> implements List<E> {
         finally {
             semaphore.release();
         }
-        return get(index);
+        return get;
     }
 
     @Override
     public E set(int index, E element) {
-        Object set=null;
+        E set=null;
         try {
             semaphore.acquire();
             set=list.set(index, element);
@@ -175,7 +177,8 @@ public class MyList<E> implements List<E> {
         finally {
             semaphore.release();
         }
-        return set(index, element);
+        assert set!=null;
+        return set;
     }
 
     @Override
@@ -205,7 +208,7 @@ public class MyList<E> implements List<E> {
         finally {
             semaphore.release();
         }
-        return remove(index);
+        return remove;
     }
 
     @Override
@@ -220,47 +223,128 @@ public class MyList<E> implements List<E> {
         finally {
             semaphore.release();
         }
-        return indexOf(o);
+        return indexOf;
     }
 
     @Override
     public int lastIndexOf(Object o) {
-        return 0;
+            int lastIndexOf=0;
+        try {
+            semaphore.acquire();
+            lastIndexOf=list.lastIndexOf(o);
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        finally {
+            semaphore.release();
+        }
+        return lastIndexOf;
     }
 
     @Override
     public ListIterator listIterator() {
-        return null;
+        ListIterator listIterator=null;
+        try {
+            semaphore.acquire();
+            listIterator=list.listIterator();
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        finally {
+            semaphore.release();
+        }
+        return listIterator;
     }
 
     @Override
     public ListIterator listIterator(int index) {
-        return null;
+        ListIterator listIterator=null;
+        try {
+            semaphore.acquire();
+            listIterator=list.listIterator(index);
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        finally {
+            semaphore.release();
+        }
+        return listIterator;
     }
 
     @Override
     public List subList(int fromIndex, int toIndex) {
-        return null;
+        List subList=null;
+        try {
+            semaphore.acquire();
+            subList=list.subList(fromIndex, toIndex);
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        finally {
+            semaphore.release();
+        }
+        return subList;
     }
 
     @Override
     public boolean retainAll(Collection c) {
-        return false;
+        boolean retainAll=false;
+        try {
+            semaphore.acquire();
+            retainAll=list.retainAll(c);
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        finally {
+            semaphore.release();
+        }
+        return retainAll;
     }
 
     @Override
     public boolean removeAll(Collection c) {
-        return false;
+        boolean removeAll=false;
+        try {
+            semaphore.acquire();
+            removeAll=list.removeAll(c);
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        finally {
+            semaphore.release();
+        }
+        return removeAll;
     }
 
     @Override
     public boolean containsAll(Collection c) {
-        return false;
+        boolean containsAll=false;
+        try {
+            semaphore.acquire();
+            containsAll=list.containsAll(c);
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        finally {
+            semaphore.release();
+        }
+        return containsAll;
     }
 
+
     @Override
-    public Object[] toArray(Object[] a) {
-        return new Object[0];
+    public <T> T[] toArray(T[] a) {
+        T[] toArray= null;
+        try {
+            semaphore.acquire();
+            toArray=list.toArray(a);
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        finally {
+            semaphore.release();
+        }
+        return  toArray;
     }
 }
 
