@@ -8,7 +8,4 @@ public class Singleton3 {
     public void printName(){
         System.out.println("33333");
     }
-
-
-
 }
