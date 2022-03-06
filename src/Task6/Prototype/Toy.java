@@ -10,14 +10,14 @@ public class Toy implements Copyable {
     private int height=22;
     private int price=100;
 
-    @Override
-    public String toString() {
-        return "Toy{" +
-                "name='" + name + '\'' +
-                ", height=" + height +
-                ", price=" + price +
-                '}';
-    }
+    //@Override
+//    public String toString() {
+//        return "Toy{" +
+//                "name='" + name + '\'' +
+//                ", height=" + height +
+//                ", price=" + price +
+//                '}';
+//    }
 
     public Toy(String name, int height, int price ){
         this.height=height;

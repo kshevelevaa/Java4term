@@ -6,7 +6,7 @@ import java.util.concurrent.Semaphore;
 
 public class MyList<E> implements List<E> {
 
-    private final Semaphore semaphore = new Semaphore(1,true);
+    private final Semaphore semaphore = new Semaphore(2,true);
     private final List<E> list = new ArrayList<>();
     @Override
     public int size() {

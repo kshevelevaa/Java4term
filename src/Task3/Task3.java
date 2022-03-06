@@ -18,7 +18,7 @@ public class Task3 {
             }
         });
         Thread tread2=new Thread(()-> {
-            for (int i=500;i<1000000;i++){
+            for (int i=500;i<1000;i++){
                 list.add(i);
                 unsafeList.add(i);
             }
@@ -26,9 +26,9 @@ public class Task3 {
         tread1.start();
         tread2.start();
         Thread.sleep(1000);
-//        for (Integer i : list) {
+//      for (Integer i : list) {
 //            System.out.print(i + " ");
-//        }
+//      }
         System.out.println();
         System.out.println("Size of my list: "+ list.size());
         System.out.println("Size of my unsafe list: "+ unsafeList.size());
@@ -58,7 +58,7 @@ public class Task3 {
         System.out.println("Size of my set: "+ set.size());
         System.out.println("Size of my unsafe set: "+ unsafeSet.size());
 
-        };
+     };
 
 
 }
